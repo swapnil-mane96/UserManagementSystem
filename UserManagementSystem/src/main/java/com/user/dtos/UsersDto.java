@@ -13,5 +13,6 @@ public class UsersDto {
 	private String city;
 	private String email;
 	private String password;
-	//private Boolean isActive;
+	private Boolean isActive;
+	private String status;
 }
