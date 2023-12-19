@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 			users.setEmail(usersDto.getEmail());
 			users.setPassword(usersDto.getPassword());
 			users.setIsActive(true);
+			users.setStatus("Activated");
 			this.userRepository.save(users);
 
 		}
@@ -82,6 +83,19 @@ public class UserServiceImpl implements UserService {
 			this.userRepository.save(user);
 		}
 		return usersDto;
+	}
+
+	@Override
+	public Boolean deleteUser(Integer userId) {
+		Boolean flag = false;
+		Users usersData = this.userRepository.findByUserId(userId);
+		if (usersData != null) {
+			usersData.setIsActive(false);
+			usersData.setStatus("Deactivated");
+			this.userRepository.save(usersData);
+			flag = true;
+		}
+		return flag;
 	}
 
 }

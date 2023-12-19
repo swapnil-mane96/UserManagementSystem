@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,4 +62,13 @@ public class UsersController {
 		return new ResponseEntity<ReturnData>(returnData, HttpStatus.OK);
 	}
 
+	@DeleteMapping("/deleteuser/{userId}")
+	public ResponseEntity<?> deleteUser(@PathVariable Integer userId){
+		ReturnData returnData = new ReturnData();
+		Boolean deleteUser = this.userService.deleteUser(userId);
+		returnData.setData(deleteUser);
+		returnData.setMessage("User deleted successfully");
+		returnData.setStatusCode("200");
+		return new ResponseEntity<ReturnData>(returnData, HttpStatus.OK);
+	}
 }

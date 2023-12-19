@@ -18,5 +18,6 @@ public interface UserService {
 	// update user data
 	UsersDto updateUserData(Integer userId, UsersDto usersDto);
 	
-	
+	// delete user
+	Boolean deleteUser(Integer userId);
 }
